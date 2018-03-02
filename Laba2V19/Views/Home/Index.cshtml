@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Laba2V19.Models.MarkaClock>
+
+@{
+    ViewBag.Title = "Список";
+}
+
+<h2>Список</h2>
+
+<div>@Html.ActionLink("Додати", "Create", new { })</div>
+<table>
+    <tr>
+        <th>
+            Назва 
+        </th>
+        <th>
+            Країна
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+
+                @Html.ActionLink("Тип ", "Details", new { id = item.IdMarka })
+
+            </td>
+            <td>
+
+                @Html.ActionLink("Змінити ", "Edit", new { id = item.IdMarka })
+
+            </td>
+            <td>
+
+                @Html.ActionLink("Видалити ", "Delete", new { id = item.IdMarka })
+
+            </td>
+        </tr>
+    }
+</table>

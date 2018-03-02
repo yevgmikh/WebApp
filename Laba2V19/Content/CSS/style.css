@@ -1,0 +1,85 @@
+Body{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: rgb(0, 90, 90);
+	font-size: 16px; 
+	background-image: url('../bbbb.jpg');
+}
+
+P{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: rgb(0, 90, 90);
+}
+
+.fon{
+	background-image: url('../nnnnm.jpg');
+}
+
+.fon1{
+	text-align: center; 
+	background-image: url('/*2.gif'); 
+}
+
+ul{
+	list-style-image: url('../mb.gif');
+}
+
+.ul1{
+	list-style-image: url('/*2.gif');
+}
+
+.ul2{
+	list-style-image: url('/*3.gif');
+}
+
+.ul3{
+	list-style-image: url('/*4.gif');
+}
+
+.ul4{
+	list-style-image: url('/*5.gif');
+}
+
+H1.Border {
+	border-width: 1; 
+	border: solid; 
+	border-color: green; 
+	text-align:center
+}
+
+H1.Background {
+	background-color: lime; 
+	text-align: center
+}
+
+a{
+	color: #707986;
+	text-decoration: none;
+}
+
+.prod {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px;
+	color: #2D3368; 
+	font-style: normal; 
+	font-weight: bold; 
+	text-decoration:none; 
+	line-height: 15px;
+}
+
+.prod:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size:10px;
+	color: #A57329; 
+	font-style: normal; 
+	font-weight: bold; 
+	text-decoration: none; 
+	line-height: 15px; 
+}
+
+.menuurl {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color:#222222; 
+	font-size: 20px; 
+	font-style: normal; 
+	font-weight: bold; 
+}

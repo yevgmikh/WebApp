@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Database19ModelStoreContainer" CdmEntityContainer="Database19Entities">
+    <EntitySetMapping Name="MarkaClocks">
+      <EntityTypeMapping TypeName="Database19Model.MarkaClock">
+        <MappingFragment StoreEntitySet="MarkaClock">
+          <ScalarProperty Name="IdMarka" ColumnName="IdMarka" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PosClocks">
+      <EntityTypeMapping TypeName="Database19Model.PosClock">
+        <MappingFragment StoreEntitySet="PosClock">
+          <ScalarProperty Name="IdPos" ColumnName="IdPos" />
+          <ScalarProperty Name="IdMarka" ColumnName="IdMarka" />
+          <ScalarProperty Name="IdType" ColumnName="IdType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeClocks">
+      <EntityTypeMapping TypeName="Database19Model.TypeClock">
+        <MappingFragment StoreEntitySet="TypeClock">
+          <ScalarProperty Name="IdType" ColumnName="IdType" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

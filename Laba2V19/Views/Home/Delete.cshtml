@@ -1,0 +1,33 @@
+﻿@model Laba2V19.Models.MarkaClock
+
+@{
+    ViewBag.Title = "Видалити";
+}
+
+<h2>Видалити</h2>
+
+<h3>Ви впевнені що хочете видалити?</h3>
+<fieldset>
+    <legend>Марка</legend>
+
+    <div class="display-label">Назва:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">Країна:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Country)
+    </div>
+</fieldset>
+<p></p>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Видалити" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Назад до списку", "Index")
+</div>

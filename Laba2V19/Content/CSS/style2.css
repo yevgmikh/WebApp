@@ -1,0 +1,26 @@
+Body{
+	font-family: MV Boli, Arial, Calibri;
+	color: rgb(19, 70, 8);
+	font-size: 14px; 
+	background-image: url('../yyyy.jpg');
+}
+
+P{
+	font-family: MV Boli, Arial, Calibri;
+	color: rgb(86, 0, 45);
+}
+
+H1{
+	font: Verdana;
+	color: #831209
+}
+
+ul{
+	list-style-image: url('../mb.gif');
+	color: #787455
+}
+
+a{
+	color: #292256;
+	text-decoration: none;
+}

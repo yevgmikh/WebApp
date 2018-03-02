@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Database19Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MarkaClock">
+          <Key>
+            <PropertyRef Name="IdMarka" />
+          </Key>
+          <Property Name="IdMarka" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PosClock">
+          <Key>
+            <PropertyRef Name="IdPos" />
+          </Key>
+          <Property Name="IdPos" Type="int" Nullable="false" />
+          <Property Name="IdMarka" Type="int" Nullable="false" />
+          <Property Name="IdType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeClock">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PosClock_MarkaClock">
+          <End Role="MarkaClock" Type="Self.MarkaClock" Multiplicity="1" />
+          <End Role="PosClock" Type="Self.PosClock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarkaClock">
+              <PropertyRef Name="IdMarka" />
+            </Principal>
+            <Dependent Role="PosClock">
+              <PropertyRef Name="IdMarka" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PosClock_TypeClock">
+          <End Role="TypeClock" Type="Self.TypeClock" Multiplicity="1" />
+          <End Role="PosClock" Type="Self.PosClock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeClock">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="PosClock">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database19ModelStoreContainer">
+          <EntitySet Name="MarkaClock" EntityType="Self.MarkaClock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PosClock" EntityType="Self.PosClock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeClock" EntityType="Self.TypeClock" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PosClock_MarkaClock" Association="Self.FK_PosClock_MarkaClock">
+            <End Role="MarkaClock" EntitySet="MarkaClock" />
+            <End Role="PosClock" EntitySet="PosClock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PosClock_TypeClock" Association="Self.FK_PosClock_TypeClock">
+            <End Role="TypeClock" EntitySet="TypeClock" />
+            <End Role="PosClock" EntitySet="PosClock" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database19Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MarkaClock">
+          <Key>
+            <PropertyRef Name="IdMarka" />
+          </Key>
+          <Property Name="IdMarka" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PosClocks" Relationship="Self.FK_PosClock_MarkaClock" FromRole="MarkaClock" ToRole="PosClock" />
+        </EntityType>
+        <EntityType Name="PosClock">
+          <Key>
+            <PropertyRef Name="IdPos" />
+          </Key>
+          <Property Name="IdPos" Type="Int32" Nullable="false" />
+          <Property Name="IdMarka" Type="Int32" Nullable="false" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MarkaClock" Relationship="Self.FK_PosClock_MarkaClock" FromRole="PosClock" ToRole="MarkaClock" />
+          <NavigationProperty Name="TypeClock" Relationship="Self.FK_PosClock_TypeClock" FromRole="PosClock" ToRole="TypeClock" />
+        </EntityType>
+        <EntityType Name="TypeClock">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PosClocks" Relationship="Self.FK_PosClock_TypeClock" FromRole="TypeClock" ToRole="PosClock" />
+        </EntityType>
+        <Association Name="FK_PosClock_MarkaClock">
+          <End Role="MarkaClock" Type="Self.MarkaClock" Multiplicity="1" />
+          <End Role="PosClock" Type="Self.PosClock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarkaClock">
+              <PropertyRef Name="IdMarka" />
+            </Principal>
+            <Dependent Role="PosClock">
+              <PropertyRef Name="IdMarka" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PosClock_TypeClock">
+          <End Role="TypeClock" Type="Self.TypeClock" Multiplicity="1" />
+          <End Role="PosClock" Type="Self.PosClock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeClock">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="PosClock">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database19Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MarkaClocks" EntityType="Self.MarkaClock" />
+          <EntitySet Name="PosClocks" EntityType="Self.PosClock" />
+          <EntitySet Name="TypeClocks" EntityType="Self.TypeClock" />
+          <AssociationSet Name="FK_PosClock_MarkaClock" Association="Self.FK_PosClock_MarkaClock">
+            <End Role="MarkaClock" EntitySet="MarkaClocks" />
+            <End Role="PosClock" EntitySet="PosClocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PosClock_TypeClock" Association="Self.FK_PosClock_TypeClock">
+            <End Role="TypeClock" EntitySet="TypeClocks" />
+            <End Role="PosClock" EntitySet="PosClocks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database19ModelStoreContainer" CdmEntityContainer="Database19Entities">
+          <EntitySetMapping Name="MarkaClocks">
+            <EntityTypeMapping TypeName="Database19Model.MarkaClock">
+              <MappingFragment StoreEntitySet="MarkaClock">
+                <ScalarProperty Name="IdMarka" ColumnName="IdMarka" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosClocks">
+            <EntityTypeMapping TypeName="Database19Model.PosClock">
+              <MappingFragment StoreEntitySet="PosClock">
+                <ScalarProperty Name="IdPos" ColumnName="IdPos" />
+                <ScalarProperty Name="IdMarka" ColumnName="IdMarka" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeClocks">
+            <EntityTypeMapping TypeName="Database19Model.TypeClock">
+              <MappingFragment StoreEntitySet="TypeClock">
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

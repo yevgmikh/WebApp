@@ -1,0 +1,17 @@
+﻿@model Laba2V19.Models.TypeClock
+
+@{
+    ViewBag.Title = "Тип";
+}
+
+<h2>Деталі</h2>
+
+<fieldset>
+    <legend>Тип</legend>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Назад до списку", "Index")
+</p>
