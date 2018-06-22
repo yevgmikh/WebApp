@@ -7,12 +7,12 @@ namespace Laba2V19.Controllers
 {
     public class HomeController : Controller
     {
-        private Database19Entities db = new Database19Entities();
+        private Database19Entities _db = new Database19Entities();
 
         // GET: Home
         public ActionResult Index()
         {
-            return View((from MarkaClock in db.MarkaClocks
+            return View((from MarkaClock in _db.MarkaClocks
                          select MarkaClock).ToList());
         }
 
@@ -21,7 +21,7 @@ namespace Laba2V19.Controllers
         {
             try
             {
-                return View((from PosClock in db.PosClocks
+                return View((from PosClock in _db.PosClocks
                              where PosClock.IdMarka == id
                              select PosClock.TypeClock).First());
             }
@@ -51,15 +51,15 @@ namespace Laba2V19.Controllers
                 {
                     try
                     {
-                        markaClock.IdMarka = (from marka in db.MarkaClocks
+                        markaClock.IdMarka = (from marka in _db.MarkaClocks
                                               select marka.IdMarka).Max() + 1;
                     }
                     catch (Exception)
                     {
                         markaClock.IdMarka = 1;
                     }
-                    db.MarkaClocks.Add(markaClock);
-                    db.SaveChanges();
+                    _db.MarkaClocks.Add(markaClock);
+                    _db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
@@ -74,7 +74,7 @@ namespace Laba2V19.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View((from marka in db.MarkaClocks
+            return View((from marka in _db.MarkaClocks
                          where marka.IdMarka == id
                          select marka).First());
         }
@@ -83,13 +83,13 @@ namespace Laba2V19.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection formCollection)
         {
-            var markaClock = (from marka in db.MarkaClocks
+            var markaClock = (from marka in _db.MarkaClocks
                            where marka.IdMarka == id
                            select marka).First();
             try
             {
                 UpdateModel(markaClock);
-                db.SaveChanges();
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -102,7 +102,7 @@ namespace Laba2V19.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            return View((from marka in db.MarkaClocks
+            return View((from marka in _db.MarkaClocks
                          where marka.IdMarka == id
                          select marka).First());
         }
@@ -111,13 +111,13 @@ namespace Laba2V19.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection formCollection)
         {
-            var markaClock = (from marka in db.MarkaClocks
+            var markaClock = (from marka in _db.MarkaClocks
                              where marka.IdMarka == id
                              select marka).First();
             try
             {
-                db.MarkaClocks.Remove(markaClock);
-                db.SaveChanges();
+                _db.MarkaClocks.Remove(markaClock);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch

@@ -24,7 +24,7 @@ namespace Laba2V19.Controllers
 
     public class WApiController : ApiController
     {
-        Database19Entities db = new Database19Entities();
+        Database19Entities _db = new Database19Entities();
 
         // Get list of brands
         [HttpGet]
@@ -32,7 +32,7 @@ namespace Laba2V19.Controllers
         public ICollection<MarkaObject> GetMarka()
         {
             var collectionMarka = new Collection<MarkaObject>();
-            foreach (var m in (from marka in db.MarkaClocks select marka).ToList())
+            foreach (var m in (from marka in _db.MarkaClocks select marka).ToList())
                 collectionMarka.Add(new MarkaObject { Id = m.IdMarka, Name = m.Name });
             return collectionMarka;
         }
@@ -43,7 +43,7 @@ namespace Laba2V19.Controllers
         public ICollection<TypeObject> GetPos(int id)
         {
             var collectionType = new Collection<TypeObject>();
-            foreach (var l in (from pos in db.PosClocks where pos.IdMarka == id select pos.TypeClock).ToList())
+            foreach (var l in (from pos in _db.PosClocks where pos.IdMarka == id select pos.TypeClock).ToList())
                 collectionType.Add(new TypeObject { Id = l.IdType, Name = l.Name });
             return collectionType;
         }
@@ -56,8 +56,8 @@ namespace Laba2V19.Controllers
             var responseMessage = Request.CreateResponse(HttpStatusCode.OK);
             try
             {
-                db.MarkaClocks.Add(markaClock);
-                db.SaveChanges();
+                _db.MarkaClocks.Add(markaClock);
+                _db.SaveChanges();
                 responseMessage.Content = new StringContent("{" + $"Id:{markaClock.IdMarka},Name:{markaClock.Name},Country:{markaClock.Country}" + "}", Encoding.UTF8, "application/json");
             }
             catch (Exception ex)
@@ -75,10 +75,10 @@ namespace Laba2V19.Controllers
             var responseMessage = Request.CreateResponse(HttpStatusCode.OK);
             try
             {
-                db.MarkaClocks.Remove((from marka in db.MarkaClocks where marka.IdMarka == markaClock.IdMarka select marka).
+                _db.MarkaClocks.Remove((from marka in _db.MarkaClocks where marka.IdMarka == markaClock.IdMarka select marka).
                     First());
-                db.MarkaClocks.Add(markaClock);
-                db.SaveChanges();
+                _db.MarkaClocks.Add(markaClock);
+                _db.SaveChanges();
                 responseMessage.Content = new StringContent("{" + $"Id:{markaClock.IdMarka},Name:{markaClock.Name},Country:{markaClock.Country}" + "}", Encoding.UTF8, "application/json");
             }
             catch (Exception ex)
@@ -94,11 +94,11 @@ namespace Laba2V19.Controllers
         public HttpResponseMessage DeleteMarka(MarkaClock markaClock)
         {
             var responseMessage = Request.CreateResponse(HttpStatusCode.OK);
-            var clock = (from marka in db.MarkaClocks where marka.IdMarka == markaClock.IdMarka select marka).First();
+            var clock = (from marka in _db.MarkaClocks where marka.IdMarka == markaClock.IdMarka select marka).First();
             try
             {
-                db.MarkaClocks.Remove(clock);
-                db.SaveChanges();
+                _db.MarkaClocks.Remove(clock);
+                _db.SaveChanges();
                 responseMessage.Content = new StringContent("{" + $"Id:{clock.IdMarka},Name:{clock.Name},Country:{clock.Country}" + "}", Encoding.UTF8, "application/json");
             }
             catch (Exception ex)
