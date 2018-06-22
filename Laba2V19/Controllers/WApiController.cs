@@ -58,13 +58,11 @@ namespace Laba2V19.Controllers
             {
                 db.MarkaClocks.Add(markaClock);
                 db.SaveChanges();
-                responseMessage.Content = new StringContent("{Id:" + markaClock.IdMarka + ",Name:" + markaClock.Name + 
-                    ",Country:" + markaClock.Country + "}", Encoding.UTF8, "application/json");
+                responseMessage.Content = new StringContent("{" + $"Id:{markaClock.IdMarka},Name:{markaClock.Name},Country:{markaClock.Country}" + "}", Encoding.UTF8, "application/json");
             }
             catch (Exception ex)
             {
-                responseMessage.Content = new StringContent("{Error:" + ex.Message + "}", Encoding.UTF8,
-                    "application/json");
+                responseMessage.Content = new StringContent("{Error:" + ex.Message + "}", Encoding.UTF8, "application/json");
             }
             return responseMessage;
         }
@@ -81,13 +79,11 @@ namespace Laba2V19.Controllers
                     First());
                 db.MarkaClocks.Add(markaClock);
                 db.SaveChanges();
-                responseMessage.Content = new StringContent("{Id:" + markaClock.IdMarka + ",Name:" + markaClock.Name +
-                    ",Contry:" + markaClock.Country + "}", Encoding.UTF8, "application/json");
+                responseMessage.Content = new StringContent("{" + $"Id:{markaClock.IdMarka},Name:{markaClock.Name},Country:{markaClock.Country}" + "}", Encoding.UTF8, "application/json");
             }
             catch (Exception ex)
             {
-                responseMessage.Content = new StringContent("{Error:" + ex.Message + "}", Encoding.UTF8,
-                    "application/json");
+                responseMessage.Content = new StringContent("{Error:" + ex.Message + "}", Encoding.UTF8, "application/json");
             }
             return responseMessage;
         }
@@ -103,13 +99,11 @@ namespace Laba2V19.Controllers
             {
                 db.MarkaClocks.Remove(clock);
                 db.SaveChanges();
-                responseMessage.Content = new StringContent("{Id:" + clock.IdMarka + ",Name:" + clock.Name + 
-                    ",Contry:" + clock.Country + "}", Encoding.UTF8, "application/json");
+                responseMessage.Content = new StringContent("{" + $"Id:{clock.IdMarka},Name:{clock.Name},Country:{clock.Country}" + "}", Encoding.UTF8, "application/json");
             }
             catch (Exception ex)
             {
-                responseMessage.Content = new StringContent("{Error:" + ex.Message + "}", Encoding.UTF8, 
-                    "application/json");
+                responseMessage.Content = new StringContent("{Error:" + ex.Message + "}", Encoding.UTF8, "application/json");
             }
             return responseMessage;
         }
